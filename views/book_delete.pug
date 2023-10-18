@@ -1,0 +1,20 @@
+extends layout 
+
+block content 
+    h1 #{title}: #{book.title}
+
+    if bookInstances.length
+        p #[strong Delete all book instances under this book first!]
+        h3 Book Instances:
+        dl
+            each bookInstance in bookInstances
+                dt
+                    a(href=bookInstance.url) #{bookInstance._id}
+                    |  #{bookInstance.book.title}
+                        
+    else
+
+        p Do you really want to delete this book?
+
+            form(method='POST', action='')
+                button.btn.btn-primary(type='submit') Delete
